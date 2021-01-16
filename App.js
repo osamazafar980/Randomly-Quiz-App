@@ -1,21 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import {createStackNavigator} from 'react-navigation-stack';
+import { createAppContainer} from 'react-navigation'
+import HomeScreen from './screens/HomeScreen'
+import QuestionScreen from './screens/QuestionScreen'
+import ConfigScreen from './screens/ConfigScreen'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const stackNavigator = createStackNavigator(
+  {
+    Search:HomeScreen,
+    Question:QuestionScreen,
+    Config:ConfigScreen
+  },{
+    initialRouteName: "Search",
+
+    defaultNavigationOptions: {
+      headerTitleStyle: { alignSelf: 'center' },
+      title: "Randomly Quiz App"
+    }
+  }
+);
+
+
+
+export default createAppContainer(stackNavigator);
